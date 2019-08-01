@@ -28,8 +28,8 @@ app = flask.Flask(__name__)
 @app.route('/')
 def root():
     r = requests.get('https://www.google.com/')
-    print r
-    return '<h1>Hello world!</h1>'
+
+    return r.text
 
 
 if __name__ == '__main__':
