@@ -28,7 +28,7 @@ app = flask.Flask(__name__)
 def root():
     jwt = flask.request.headers.get('x-goog-iap-jwt-assertion')
     if jwt is None:
-        return 'Unauthorized request test2.'
+        return 'Unauthorized request.'
     user_id, user_email, error_str = (
         validate_jwt.validate_iap_jwt_from_compute_engine(
             jwt, CLOUD_PROJECT_ID, BACKEND_SERVICE_ID))
