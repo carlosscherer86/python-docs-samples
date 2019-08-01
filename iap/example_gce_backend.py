@@ -28,7 +28,8 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    return 'You want path: %s' % path
+    r = requests.get('https://www.google.com/%s'% path)
+    return r.text
 
 
 if __name__ == '__main__':
