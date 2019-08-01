@@ -27,7 +27,7 @@ app = flask.Flask(__name__)
 
 @app.route('/')
 def root():
-    return '<h1>Hello world 2!</h1>'
+    return '<h1>Hello world!</h1>'
 
 
 if __name__ == '__main__':
