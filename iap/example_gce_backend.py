@@ -28,7 +28,7 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    r = requests.get('https://www.google.com/%s'% path)
+    r = requests.get('http://34.68.214.30/')
     return r.text
 
 
