@@ -25,11 +25,10 @@ BACKEND_SERVICE_ID = 'YOUR_BACKEND_SERVICE_ID'
 
 app = flask.Flask(__name__)
 
-@app.route('/')
-def root():
-    r = requests.get('https://www.google.com/')
-    print 'feito'
-    return r.text
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return 'You want path: %s' % path
 
 
 if __name__ == '__main__':
