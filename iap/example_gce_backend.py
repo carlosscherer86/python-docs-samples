@@ -27,6 +27,7 @@ app = flask.Flask(__name__)
 
 @app.route('/')
 def root():
+    r = requests.get('https://www.google.com/')
     return '<h1>Hello world!</h1>'
 
 
