@@ -24,7 +24,7 @@ CLOUD_PROJECT_ID = 'YOUR_PROJECT_ID'
 BACKEND_SERVICE_ID = 'YOUR_BACKEND_SERVICE_ID'
 
 app = flask.Flask(__name__)
-r = requests.get("https://www.google.com/", headers=headers)
+r = requests.get("https://www.google.com/")
 
 @app.route('/')
 def root():
