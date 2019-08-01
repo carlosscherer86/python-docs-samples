@@ -18,15 +18,17 @@ import flask
 
 import validate_jwt
 
+import requests
+
 CLOUD_PROJECT_ID = 'YOUR_PROJECT_ID'
 BACKEND_SERVICE_ID = 'YOUR_BACKEND_SERVICE_ID'
 
 app = flask.Flask(__name__)
-
+r = requests.get(url, headers=headers)
 
 @app.route('/')
 def root():
-    return '<h1>Hello world!</h1>'
+    return '<h1>Hello world 2!</h1>'
 
 
 if __name__ == '__main__':
