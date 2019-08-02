@@ -18,6 +18,9 @@ import flask
 
 import validate_jwt
 
+from google.oauth2 import id_token
+from google.auth.transport import requests
+
 CLOUD_PROJECT_ID = 'YOUR_PROJECT_ID'
 BACKEND_SERVICE_ID = 'YOUR_BACKEND_SERVICE_ID'
 
@@ -27,6 +30,7 @@ app = flask.Flask(__name__)
 @app.route('/<path:path>')
 def catch_all(path):
     jwt = flask.request.headers.get('x-goog-iap-jwt-assertion')
+    return jwt
     if jwt is None:
         return 'Unauthorized request.'
     user_id, user_email, error_str = (
