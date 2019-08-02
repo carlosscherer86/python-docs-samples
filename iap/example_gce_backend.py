@@ -30,16 +30,18 @@ app = flask.Flask(__name__)
 @app.route('/<path:path>')
 def catch_all(path):
     jwt = flask.request.headers.get('x-goog-iap-jwt-assertion')
-    return jwt
-    if jwt is None:
-        return 'Unauthorized request.'
-    user_id, user_email, error_str = (
-        validate_jwt.validate_iap_jwt_from_compute_engine(
-            jwt, CLOUD_PROJECT_ID, BACKEND_SERVICE_ID))
-    if error_str:
-        return 'Error: {}'.format(error_str)
-    else:
-        return 'Done!'
+
+    try:
+        idinfo = id_token.verify_oauth2_token(jwt, requests.Request(), CLIENT_ID)
+
+
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise ValueError('Wrong issuer.')
+
+        userid = idinfo['sub']
+        return userid
+    except ValueError:
+        return 'Error'
 
 
 if __name__ == '__main__':
