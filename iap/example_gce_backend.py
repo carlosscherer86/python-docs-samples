@@ -18,10 +18,9 @@ import flask
 
 import validate_jwt
 
-from google.oauth2 import id_token
-from google.auth.transport import requests
+import requests
 
-CLOUD_PROJECT_ID = 'YOUR_PROJECT_ID'
+CLOUD_PROJECT_ID = 'kaijuapp-dev4'
 BACKEND_SERVICE_ID = 'YOUR_BACKEND_SERVICE_ID'
 
 app = flask.Flask(__name__)
@@ -30,18 +29,11 @@ app = flask.Flask(__name__)
 @app.route('/<path:path>')
 def catch_all(path):
     jwt = flask.request.headers.get('x-goog-iap-jwt-assertion')
-
-    try:
-        idinfo = id_token.verify_oauth2_token(jwt, requests.Request(), CLIENT_ID)
-
-
-        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-            raise ValueError('Wrong issuer.')
-
-        userid = idinfo['sub']
-        return userid
-    except ValueError:
-        return 'Error'
+    if jwt is None:
+        return 'Unauthorized request.'
+    else:
+        r = requests.get('http://10.128.0.20/')
+        return r.text
 
 
 if __name__ == '__main__':
