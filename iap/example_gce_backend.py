@@ -20,7 +20,7 @@ import validate_jwt
 
 import requests
 
-CLOUD_PROJECT_ID = 'kaijuapp-dev4'
+CLOUD_PROJECT_ID = 'CLOUD_PROJECT_ID'
 BACKEND_SERVICE_ID = 'YOUR_BACKEND_SERVICE_ID'
 
 app = flask.Flask(__name__)
@@ -32,7 +32,7 @@ def catch_all(path):
     if jwt is None:
         return 'Unauthorized request.'
     else:
-        r = requests.get('http://10.128.0.20/')
+        r = requests.get('http://10.128.0.15/')
         return r.text
 
 
