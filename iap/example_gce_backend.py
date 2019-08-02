@@ -32,7 +32,7 @@ def catch_all(path):
     if jwt is None:
         return 'Unauthorized request.'
     else:
-        r = requests.get('http://10.128.0.20/')
+        r = requests.get('http://10.128.0.22/')
         return r.text
 
 
