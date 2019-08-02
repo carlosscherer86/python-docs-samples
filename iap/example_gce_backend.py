@@ -18,8 +18,6 @@ import flask
 
 import validate_jwt
 
-import requests
-
 CLOUD_PROJECT_ID = 'YOUR_PROJECT_ID'
 BACKEND_SERVICE_ID = 'YOUR_BACKEND_SERVICE_ID'
 
@@ -37,8 +35,7 @@ def catch_all(path):
     if error_str:
         return 'Error: {}'.format(error_str)
     else:
-        r = requests.get('http://10.128.0.20/')
-        return r.text
+        return 'Done!'
 
 
 if __name__ == '__main__':
