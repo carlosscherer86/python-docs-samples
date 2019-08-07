@@ -33,6 +33,8 @@ def catch_all(path):
         if flask.request.method == 'GET':
             return get_request(path)
         return ''
+    else :
+        return 'Unauthorized request.'
 
 def get_request(path):
     r = requests.get(URL +'/'+ path)
