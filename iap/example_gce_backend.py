@@ -29,10 +29,9 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    print('test', flush=True)
     if path == 'images/main/ic_motorola.png':
         r = requests.get(URL +'/'+ path)
-        return 'image'
+        return r
     if not has_authorization() :
         return 'Unauthorized request.'
     if flask.request.method == 'GET':
