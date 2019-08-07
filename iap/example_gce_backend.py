@@ -33,7 +33,7 @@ def catch_all(path):
 
 def get_request(path):
     r = requests.get(URL +'/'+ path)
-    return flask.request
+    return r.text
 
 if __name__ == '__main__':
     app.run()
