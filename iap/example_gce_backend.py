@@ -20,6 +20,8 @@ import validate_jwt
 
 import requests
 
+from authentication import has_authorization
+
 URL = 'http://10.128.0.22/'
 
 app = flask.Flask(__name__)
@@ -33,10 +35,7 @@ def catch_all(path):
 
 def get_request(path):
     r = requests.get(URL +'/'+ path)
-    if flask.request.is_xhr:
-        return r.text
-    else:
-        return 'Done'
+    return r.text
 
 if __name__ == '__main__':
     app.run()
