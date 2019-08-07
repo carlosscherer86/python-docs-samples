@@ -29,9 +29,6 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    if path == 'images/main/ic_motorola.png':
-        r = requests.get(URL +'/'+ path)
-        return resolve_content_type(r)
     if not has_authorization() :
         return 'Unauthorized request.'
     if flask.request.method == 'GET':
@@ -44,6 +41,9 @@ def get_request(path):
     return resolve_content_type(r)
 
 def resolve_content_type(request):
+    contentType = request.headers['content-type']
+    if contentType == 'text/html':
+        request.text 
     return request.headers['content-type']
 
 if __name__ == '__main__':
