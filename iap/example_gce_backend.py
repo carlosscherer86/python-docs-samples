@@ -47,7 +47,9 @@ def resolve_content_type(request):
     if contentType == 'text/html':
         return request.text 
     if contentType == 'image/png':
-        return send_file(BytesIO(request.content), mimetype='image/png')
+        return send_file(BytesIO(request.content), mimetype=contentType)
+    if contentType =='text/css'
+        return request.text
     return request.headers['content-type']
 
 if __name__ == '__main__':
