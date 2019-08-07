@@ -56,7 +56,7 @@ def resolve_content_type(request):
             return Response(request.text, mimetype=contentType)
         return request.headers['content-type']
     except:
-        return 'Error'
+        return request.content
 
 if __name__ == '__main__':
     app.run()
