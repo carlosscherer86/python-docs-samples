@@ -28,13 +28,8 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    jwt = flask.request.headers.get('x-goog-iap-jwt-assertion')
-    if jwt is None:
-        return 'Unauthorized request.'
-    else:
-        r = requests.get('http://10.128.0.22/')
-        return r.text
-
+    r = requests.get('http://10.128.0.22/')
+    return r.text
 
 if __name__ == '__main__':
     app.run()
