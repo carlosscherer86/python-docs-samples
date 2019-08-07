@@ -1,2 +1,2 @@
-def has_authorization():
+def has_authorization(token):
     return True
