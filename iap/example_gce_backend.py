@@ -29,7 +29,7 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    print('test')
+    print('test', flush=True)
     if path == 'images/main/ic_motorola.png':
         r = requests.get(URL +'/'+ path)
         return 'image'
