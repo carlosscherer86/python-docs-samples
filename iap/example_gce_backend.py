@@ -29,7 +29,7 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    if !has_authorization() :
+    if not has_authorization() :
         return 'Unauthorized request.'
     if flask.request.method == 'GET':
         return get_request(path)
