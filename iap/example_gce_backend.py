@@ -33,7 +33,10 @@ def catch_all(path):
 
 def get_request(path):
     r = requests.get(URL +'/'+ path)
-    return r.text
+    if flask.request.is_xhr:
+        return r.text
+    else:
+        return 'Done'
 
 if __name__ == '__main__':
     app.run()
