@@ -21,6 +21,7 @@ import validate_jwt
 import requests
 
 from authentication import has_authorization
+from io import BytesIO
 
 URL = 'http://10.128.0.22/'
 
@@ -45,7 +46,7 @@ def resolve_content_type(request):
     if contentType == 'text/html':
         return request.text 
     if contentType == 'image/png':
-        return request.iter_content
+        return send_file(BytesIO(request.content), mimetype='image/png')
     return request.headers['content-type']
 
 if __name__ == '__main__':
