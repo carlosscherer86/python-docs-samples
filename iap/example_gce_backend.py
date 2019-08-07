@@ -46,15 +46,9 @@ def get_request(path):
 def resolve_content_type(request):
     try:
         contentType = request.headers['content-type']
-        if contentType == 'text/html':
-            return request.text 
         if contentType == 'image/png':
             return send_file(BytesIO(request.content), mimetype=contentType)
-        if contentType =='text/css':
-            return Response(request.text, mimetype=contentType)
-        if contentType == 'application/javascript':
-            return Response(request.text, mimetype=contentType)
-        return request.headers['content-type']
+        return Response(request.text, mimetype=contentType)
     except:
         return request.content
 
