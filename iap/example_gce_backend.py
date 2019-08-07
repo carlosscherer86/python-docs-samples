@@ -27,7 +27,7 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    if flask.request.method == 'GET'
+    if flask.request.method == 'GET':
         r = requests.get(URL +'/'+ path)
         return r.text
     return ''
