@@ -27,8 +27,9 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    r = requests.get(URL +'/'+ path)
-    return flask.request.method
-
+    if flask.request.method == 'GET'
+        r = requests.get(URL +'/'+ path)
+        return r.text
+    return ''
 if __name__ == '__main__':
     app.run()
