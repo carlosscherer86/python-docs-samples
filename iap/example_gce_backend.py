@@ -22,6 +22,7 @@ import requests
 
 from authentication import has_authorization
 from io import BytesIO
+from flask import send_file
 
 URL = 'http://10.128.0.22/'
 
