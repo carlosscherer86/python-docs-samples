@@ -20,16 +20,15 @@ import validate_jwt
 
 import requests
 
-CLOUD_PROJECT_ID = 'CLOUD_PROJECT_ID'
-BACKEND_SERVICE_ID = 'YOUR_BACKEND_SERVICE_ID'
+URL = 'http://10.128.0.22/'
 
 app = flask.Flask(__name__)
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    r = requests.get('http://10.128.0.22/')
-    return r.text
+    r = requests.get(URL)
+    return path
 
 if __name__ == '__main__':
     app.run()
