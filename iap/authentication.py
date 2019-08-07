@@ -1,2 +1,2 @@
 def has_authorization():
-    return False
+    return True
