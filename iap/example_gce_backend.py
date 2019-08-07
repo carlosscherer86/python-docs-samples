@@ -44,6 +44,8 @@ def resolve_content_type(request):
     contentType = request.headers['content-type']
     if contentType == 'text/html':
         return request.text 
+    if contentType == 'image/png':
+        return request.iter_content
     return request.headers['content-type']
 
 if __name__ == '__main__':
