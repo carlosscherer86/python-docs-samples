@@ -43,7 +43,7 @@ def get_request(path):
 def resolve_content_type(request):
     contentType = request.headers['content-type']
     if contentType == 'text/html':
-        request.text 
+        return request.text 
     return request.headers['content-type']
 
 if __name__ == '__main__':
