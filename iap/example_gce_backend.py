@@ -56,7 +56,7 @@ def resolve_content_type(request):
             return Response(request.text, mimetype=contentType)
         return request.headers['content-type']
     except:
-        return send_file(BytesIO(request.content))
+        return 'Error'
 
 if __name__ == '__main__':
     app.run()
