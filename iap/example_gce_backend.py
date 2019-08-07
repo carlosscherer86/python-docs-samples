@@ -41,10 +41,10 @@ def catch_all(path):
 
 def get_request(path):
     r = requests.get(URL +'/'+ path)
-    return r.headers['content-type']
+    return resolve_content_type(r)
 
 def resolve_content_type(request):
-    return r.headers['content-type']
+    return request.headers['content-type']
 
 if __name__ == '__main__':
     app.run()
