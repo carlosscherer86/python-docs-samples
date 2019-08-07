@@ -51,6 +51,8 @@ def resolve_content_type(request):
         return send_file(BytesIO(request.content), mimetype=contentType)
     if contentType =='text/css':
         return Response(request.text, mimetype=contentType)
+    if contentType == 'application/javascript':
+        return Response(request.text, mimetype=contentType)
     return request.headers['content-type']
 
 if __name__ == '__main__':
