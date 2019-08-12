@@ -16,7 +16,6 @@ app = flask.Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    return flask.request.content_type
     token = flask.request.args.get('token')
     if not has_authorization(token) :
         return 'Unauthorized request.'
