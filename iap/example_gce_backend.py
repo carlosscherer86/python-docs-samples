@@ -14,7 +14,7 @@ GET_METHOD = 'GET'
 app = flask.Flask(__name__)
 
 @app.route('/test')
-def catch_all(path):
+def test(path):
     return 'test'
 
 @app.route('/', defaults={'path': ''})
