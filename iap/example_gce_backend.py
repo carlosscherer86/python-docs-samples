@@ -13,21 +13,23 @@ GET_METHOD = 'GET'
 
 app = flask.Flask(__name__)
 
-@app.route('/test')
-def test(path):
-    return 'test'
+@app.route('/')
+def route_request():
+    token = flask.request.args.get('token')
+    if not has_authorization(token) :
+        return 'Unauthorized request.'
+    return handle_request('')    
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    if path == '':
-        token = flask.request.args.get('token')
-        if not has_authorization(token) :
-            return 'Unauthorized request.'
+    return handle_request(path)
+    
+def handle_request(path):
     if flask.request.method == GET_METHOD:
         return get_request(path)
     return ''
-        
+
 def get_request(path):
     r = requests.get(URL +'/'+ path)
     return resolve_content_type(r)
