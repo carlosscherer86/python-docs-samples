@@ -10,7 +10,7 @@ app = flask.Flask(__name__)
 @app.route('/')
 @app.route('/search')
 @app.route('/xml')
-def need_authorization_routes():
+def restricted_routes():
     token = flask.request.args.get('token')
     if not has_authorization(token) :
         return 'Unauthorized request.'
@@ -18,7 +18,7 @@ def need_authorization_routes():
     return requestHandler.handle_request(flask.request.path, flask.request, True)    
 
 @app.route('/<path:path>')
-def catch_all(path):
+def open_routes(path):
     requestHandler = RequestHandler('')
     return requestHandler.handle_request(flask.request.path, flask.request, False)
 
