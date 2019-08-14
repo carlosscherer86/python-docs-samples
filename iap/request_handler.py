@@ -13,7 +13,7 @@ def handle_request(path, request):
 
 def get_request(path, request):
     params = get_parms(request)
-    r = requests.get(URL +'/'+ path + params, verify=False)
+    r = requests.get(URL + path + params, verify=False)
     return resolve_content_type(r)
 
 def get_parms(request):

@@ -14,10 +14,9 @@ def need_authorization_routes():
         return 'Unauthorized request.'
     return handle_request(flask.request.path, flask.request)    
 
-@app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    return handle_request(path, flask.request)
+    return handle_request(flask.request.path, flask.request)
 
 if __name__ == '__main__':
     app.run()
