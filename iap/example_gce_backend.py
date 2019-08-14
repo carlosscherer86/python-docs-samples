@@ -7,11 +7,12 @@ from request_handler import handle_request
 app = flask.Flask(__name__)
 
 @app.route('/')
-def route_request():
+@app.route('/search')
+def need_authorization_routes():
     token = flask.request.args.get('token')
     if not has_authorization(token) :
         return 'Unauthorized request.'
-    return handle_request('', flask.request)    
+    return handle_request(flask.request.path, flask.request)    
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
