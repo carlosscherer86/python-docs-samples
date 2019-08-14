@@ -8,7 +8,7 @@ from io import BytesIO
 from flask import send_file
 from flask import Response
 
-URL = 'https://34.66.62.85:8080'
+URL = 'https://10.128.0.38:8080'
 GET_METHOD = 'GET'
 
 app = flask.Flask(__name__)
