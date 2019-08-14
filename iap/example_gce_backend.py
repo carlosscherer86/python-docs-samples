@@ -8,7 +8,7 @@ from io import BytesIO
 from flask import send_file
 from flask import Response
 
-URL = 'https://10.128.0.38:8080'
+URL = 'https://34.66.62.85:8080'
 GET_METHOD = 'GET'
 
 app = flask.Flask(__name__)
@@ -31,13 +31,23 @@ def handle_request(path):
     return ''
 
 def get_request(path):
-    r = requests.get(URL +'/'+ path, verify=False)
+    params = get_parms()
+    r = requests.get(URL +'/'+ path + params, verify=False)
     return resolve_content_type(r)
+
+def get_parms():
+    params = '';
+    if len(flask.request.args) > 0:
+        params = '?'
+        for f in flask.request.args:
+            params = params + f + '=' + flask.request.args.get(f) + '&'
+    print(params)
+    return params
 
 def resolve_content_type(request):
     try:
         contentType = request.headers['content-type']
-        if contentType == 'image/png':
+        if contentType == 'image/png' or contentType == 'image/gif':
             return send_file(BytesIO(request.content), mimetype=contentType)
         return Response(request.text, mimetype=contentType)
     except:
