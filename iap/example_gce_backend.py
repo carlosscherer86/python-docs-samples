@@ -2,7 +2,8 @@ import platform
 import flask
 
 from authentication import has_authorization
-from request_handler import handle_request
+from request_handler import RequestHandler
+
 
 app = flask.Flask(__name__)
 
@@ -12,11 +13,13 @@ def need_authorization_routes():
     token = flask.request.args.get('token')
     if not has_authorization(token) :
         return 'Unauthorized request.'
-    return handle_request(flask.request.path, flask.request)    
+    requestHandler = RequestHandler(token)
+    return requestHandler.handle_request(flask.request.path, flask.request, True)    
 
 @app.route('/<path:path>')
 def catch_all(path):
-    return handle_request(flask.request.path, flask.request)
+    requestHandler = RequestHandler('')
+    return requestHandler.handle_request(flask.request.path, flask.request, False)
 
 if __name__ == '__main__':
     app.run()
