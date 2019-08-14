@@ -9,6 +9,7 @@ app = flask.Flask(__name__)
 
 @app.route('/')
 @app.route('/search')
+@app.route('/xml')
 def need_authorization_routes():
     token = flask.request.args.get('token')
     if not has_authorization(token) :
