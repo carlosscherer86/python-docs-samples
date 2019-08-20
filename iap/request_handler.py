@@ -43,5 +43,6 @@ class RequestHandler:
                 responseText = add_token(request.text, self.token)
             print(contentType)
             return Response(responseText, mimetype=contentType)
-        except:
+        except Exception as e:
+            print(e)
             return request.content
