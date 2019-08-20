@@ -35,13 +35,13 @@ class RequestHandler:
 
     def resolve_content_type(self, request):
         try:
+            print('Test')
             contentType = request.headers['content-type']
             if contentType == 'image/png' or contentType == 'image/gif' or contentType == 'image/webp':
                 return send_file(BytesIO(request.content), mimetype=contentType)
             responseText = request.text
             if self.shouldInsertToken:
                 responseText = add_token(request.text, self.token)
-            print(contentType)
             return Response(responseText, mimetype=contentType)
         except Exception as e:
             print(e)
