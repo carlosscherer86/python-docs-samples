@@ -15,17 +15,20 @@ class RequestHandler:
         self.token = token
 
     def handle_request(self, path, request, shouldInsertToken):
+        print('Handle')
         self.shouldInsertToken = shouldInsertToken
         if request.method == self.GET_METHOD:
             return self.get_request(path, request)
         return ''
 
     def get_request(self,path, request):
+        print('Get Request')
         params = self.get_parms(request)
         r = requests.get(self.URL + path + params, verify=False)
         return self.resolve_content_type(r)
 
     def get_parms(self, request):
+        print('Get Params')
         params = '';
         if len(request.args) > 0:
             params = '?'
@@ -35,7 +38,7 @@ class RequestHandler:
 
     def resolve_content_type(self, request):
         try:
-            print('Test')
+            print('Resolve content')
             contentType = request.headers['content-type']
             if contentType == 'image/png' or contentType == 'image/gif' or contentType == 'image/webp':
                 return send_file(BytesIO(request.content), mimetype=contentType)

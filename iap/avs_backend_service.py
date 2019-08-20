@@ -14,6 +14,7 @@ def restricted_routes():
     token = flask.request.args.get('token')
     if not has_authorization(token) :
         return 'Unauthorized request.'
+    print('Controller')
     requestHandler = RequestHandler(token)
     return requestHandler.handle_request(flask.request.path, flask.request, True)    
 
