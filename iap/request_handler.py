@@ -12,7 +12,6 @@ class RequestHandler:
     shouldInsertToken = False
 
     def __init__(self, token): 
-        locale.setlocale(locale.LANG, 'pt_BR.UTF-8')
         self.token = token
 
     def handle_request(self, path, request, shouldInsertToken):
