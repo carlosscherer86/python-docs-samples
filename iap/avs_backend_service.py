@@ -12,9 +12,10 @@ app = flask.Flask(__name__)
 @app.route('/xml')
 def restricted_routes():
     token = flask.request.args.get('token')
+    print('Controller 1')
     if not has_authorization(token) :
         return 'Unauthorized request.'
-    print('Controller')
+    print('Controller 2')
     requestHandler = RequestHandler(token)
     return requestHandler.handle_request(flask.request.path, flask.request, True)    
 
