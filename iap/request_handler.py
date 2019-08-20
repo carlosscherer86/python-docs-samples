@@ -41,7 +41,6 @@ class RequestHandler:
             responseText = request.text
             if self.shouldInsertToken:
                 responseText = add_token(request.text, self.token)
-            print(request.text)
             return Response(responseText, mimetype=contentType)
         except:
             return request.content
