@@ -7,7 +7,7 @@ from response_html_handler import add_token
 
 class RequestHandler:
     GET_METHOD = 'GET'
-    URL = 'https://35.225.216.48:8080'
+    URL = 'https://34.66.62.85:8080'
     token = '';
     shouldInsertToken = False
 
